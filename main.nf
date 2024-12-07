@@ -31,9 +31,10 @@ workflow NFCORE_BASICTEMPLATE {
 
     take:
     samplesheet // channel: samplesheet read in from --input
-
     main:
 
+
+    samplesheet = file(params.input, checkIfExists: true)
     //
     // WORKFLOW: Run pipeline
     //
