@@ -29,7 +29,7 @@ import random
 with open("${input_file}", "r") as f:
     number = int(f.read().strip())
 
-result = [random.randint(5, 15) for i in range(1, 11)]
+result = [random.randint(5, 15) for i in range(0, number)]
 
 with open("${input_file.baseName}_processed.txt", "w") as f:
     for item in result:

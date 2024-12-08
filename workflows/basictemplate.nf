@@ -27,10 +27,11 @@ workflow BASICTEMPLATE {
 
     ch_versions = Channel.empty()
     
-    SOME_PYTHON_PROCESS(ch_samplesheet) // in: 1, 2, 3
-    SOME_PYTHON_PROCESS.out.processed_data.view() // out: 10, 20, 30 which go in here:
-    SOME_R_PROCESS(SOME_PYTHON_PROCESS.out.processed_data) 
-    SOME_R_PROCESS.out.analyzed_data.view() // out: 
+    SOME_PYTHON_PROCESS(ch_samplesheet) // in: 15 (how many random numbers generated in python)
+    SOME_PYTHON_PROCESS.out.processed_data.view() // out:7,12,18,... which go in here:
+    SOME_R_PROCESS(SOME_PYTHON_PROCESS.out.processed_data) // R runs summary on them
+    SOME_R_PROCESS.out.analyzed_data.view() 
+
 
     //
     // Collate and save software versions
