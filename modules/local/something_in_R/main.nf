@@ -1,4 +1,4 @@
-process R_PROCESS {
+process SOME_R_PROCESS {
     tag "$input_file"
     label 'process_low'
 

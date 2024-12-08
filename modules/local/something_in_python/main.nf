@@ -2,7 +2,7 @@
  * Do something in python: generate 10 random numbers
  */
 
-process PYTHON_PROCESS {
+process SOME_PYTHON_PROCESS {
     tag "$input_file"
     label 'process_low'
 
@@ -23,11 +23,13 @@ process PYTHON_PROCESS {
     python3 <<EOF
 
 import sys
+import random
+
 
 with open("${input_file}", "r") as f:
     number = int(f.read().strip())
 
-result = [i * number for i in range(1, 11)]
+result = [random.randint(5, 15) for i in range(1, 11)]
 
 with open("${input_file.baseName}_processed.txt", "w") as f:
     for item in result:

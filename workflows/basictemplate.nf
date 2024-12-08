@@ -10,9 +10,8 @@ include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_basictemplate_pipeline'
 
-
-include { PYTHON_PROCESS } from '../modules/local/something_in_python/main'
-include { R_PROCESS } from '../modules/local/something_in_R/main'
+include { SOME_PYTHON_PROCESS } from '../modules/local/something_in_python/main'
+include { SOME_R_PROCESS } from '../modules/local/something_in_R/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,10 +27,10 @@ workflow BASICTEMPLATE {
 
     ch_versions = Channel.empty()
     
-    PYTHON_PROCESS(ch_samplesheet) // in: 1, 2, 3
-    PYTHON_PROCESS.out.processed_data.view() // out: 10, 20, 30 which go in here:
-    R_PROCESS(PYTHON_PROCESS.out.processed_data) 
-    R_PROCESS.out.analyzed_data.view() // out: 
+    SOME_PYTHON_PROCESS(ch_samplesheet) // in: 1, 2, 3
+    SOME_PYTHON_PROCESS.out.processed_data.view() // out: 10, 20, 30 which go in here:
+    SOME_R_PROCESS(SOME_PYTHON_PROCESS.out.processed_data) 
+    SOME_R_PROCESS.out.analyzed_data.view() // out: 
 
     //
     // Collate and save software versions
