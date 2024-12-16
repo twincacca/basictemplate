@@ -14,7 +14,7 @@ process SOME_R_PROCESS {
     path "*_analyzed.txt", emit: analyzed_data
     path "versions.yml"  , emit: versions
 
-     script:
+    script:
     """
     #!/usr/bin/env Rscript
     input_data <- read.table("${input_file}", header=FALSE, col.names=c("value"))
@@ -32,21 +32,4 @@ process SOME_R_PROCESS {
     """
 }
 
-
-
-//     script:
-//     """
-//     Rscript - <<EOF
-// input_data <- read.table("${input_file}", header=FALSE, col.names=c("value"))
-// summary_stats <- summary(input_data\$value)
-// cat("Summary Statistics:\\n", file="${input_file.baseName}_analyzed.txt")
-// capture.output(summary_stats, file="${input_file.baseName}_analyzed.txt", append=TRUE)
-// cat("\\nSum:", sum(input_data\$value), file="${input_file.baseName}_analyzed.txt", append=TRUE)
-// EOF
-
-//     cat <<-END_VERSIONS > versions.yml
-//     "${task.process}":
-//         r-base: \$(R --version | sed -n 1p | sed 's/R version //' | sed 's/ .*//')
-//     END_VERSIONS
-//     """
 
